@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,6 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [UserController::class, 'logout']);
+    Route::post('/add', [RecipeController::class, 'store']);
+    Route::get('/recipes' , [RecipeController::class, 'index']);
 });

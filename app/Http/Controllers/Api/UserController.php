@@ -26,7 +26,6 @@ class UserController extends Controller
             ], 422);
         } else {
 
-
             $user = new User([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
