@@ -28,7 +28,6 @@ class UserTest extends TestCase
                          'id',
                          'name',
                          'email',
-                         // other user fields
                      ],
                      'token',
                  ]);
