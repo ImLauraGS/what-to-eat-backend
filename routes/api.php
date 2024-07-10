@@ -29,4 +29,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/recipes' , [RecipeController::class, 'index']);
     Route::get('/recipe/{id}' , [RecipeController::class, 'getRecipe']);
     Route::put('/recipe/{id}' , [RecipeController::class, 'update']);
+    Route::delete('/recipe/{id}' , [RecipeController::class, 'destroy']);
 });

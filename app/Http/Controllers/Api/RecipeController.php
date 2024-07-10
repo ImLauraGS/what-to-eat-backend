@@ -125,6 +125,24 @@ class RecipeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $user = Auth::user();
+
+            if (!$user) {
+                return response()->json(['message' => 'No autorizado'], 401);
+            }
+
+            $recipe = Recipe::findOrFail($id);
+
+            if ($recipe->user_id !== $user->id) {
+                return response()->json(['message' => 'No autorizado para eliminar esta receta'], 403);
+            }
+
+            $recipe->delete();
+
+            return response()->json(['message' => 'La receta se ha eliminado correctamente'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al eliminar la receta', 'error' => $e->getMessage()], 500);
+        }
     }
 }
