@@ -31,17 +31,10 @@ class AddUserIdToRecipesTable extends Migration
     public function down()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            // Check if the foreign key exists before attempting to drop it
-            $foreignKeys = DB::select(DB::raw('SHOW KEYS FROM recipes WHERE Key_name = "recipes_user_id_foreign"'));
-
-            if (!empty($foreignKeys)) {
-                $table->dropForeign(['user_id']);
-            }
-
-            // Drop the user_id column
-            if (Schema::hasColumn('recipes', 'user_id')) {
-                $table->dropColumn('user_id');
-            }
+     
+            $table->dropForeign(['user_id']);
+    
+            $table->dropColumn('user_id');
         });
     }
 }
