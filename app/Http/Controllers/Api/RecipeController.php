@@ -25,9 +25,19 @@ class RecipeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function getRecipe($id)
     {
-        //
+        if (Auth::check()) {
+            $recipe = Recipe::findOrFail($id);
+
+            if ($recipe) {
+                return response()->json($recipe);
+            } else {
+                return response()->json(['error' => 'Receta no encontrada'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'No autorizado'], 401);
+        }
     }
 
     /**
@@ -83,7 +93,31 @@ class RecipeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'description' => 'sometimes|required|string|max:1500',
+            'ingredients' => 'sometimes|required|string|max:1500',
+        ]);
+
+        try {
+            $user = Auth::user();
+
+            if (!$user) {
+                return response()->json(['message' => 'No autorizado'], 401);
+            }
+
+            $recipe = Recipe::findOrFail($id);
+
+            if ($recipe->user_id !== $user->id) {
+                return response()->json(['message' => 'No autorizado para actualizar esta receta'], 403);
+            }
+
+            $recipe->update($request->only(['title', 'description', 'ingredients']));
+
+            return response()->json(['message' => 'La receta se ha actualizado correctamente', 'recipe' => $recipe], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al actualizar la receta', 'error' => $e->getMessage()], 500);
+        }
     }
 
     /**
