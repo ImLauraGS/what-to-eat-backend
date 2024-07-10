@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RecipeTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      */
@@ -22,7 +23,7 @@ class RecipeTest extends TestCase
     ]);
     $recipes = Recipe::factory()->count(5)->create(['user_id' => $user->id]);
 
-    Sanctum::actingAs($user, ['*']); // Authenticate the user
+    Sanctum::actingAs($user, ['*']); 
 
     $response = $this->getJson('/api/recipes');
 
@@ -52,6 +53,51 @@ class RecipeTest extends TestCase
             'description' => 'Test Description',
             'ingredients' => 'Test Ingredients',
             'user_id' => $user->id,
+        ]);
+    }
+    
+    public function test_update(){
+        $user = User::factory()->create();
+        $recipe = Recipe::factory()->create(['user_id' => $user->id]);
+
+        Sanctum::actingAs($user, ['*']);
+        
+        $response = $this->putJson("/api/recipe/{$recipe->id}", [
+            'title' => 'Updated Recipe',
+            'description' => 'Updated Description',
+            'ingredients' => 'Updated Ingredients',
+        ]);
+
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'message' => 'La receta se ha actualizado correctamente',
+                 ]);
+
+        $this->assertDatabaseHas('recipes', [
+            'id' => $recipe->id,
+            'title' => 'Updated Recipe',
+            'description' => 'Updated Description',
+            'ingredients' => 'Updated Ingredients',
+            'user_id' => $user->id,
+        ]);
+    }
+
+    public function test_destroy(){
+        
+        $user = User::factory()->create();
+        $recipe = Recipe::factory()->create(['user_id' => $user->id]);
+
+        Sanctum::actingAs($user, ['*']);
+
+        $response = $this->deleteJson("/api/recipe/{$recipe->id}");
+
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'message' => 'La receta se ha eliminado correctamente',
+                 ]);
+
+        $this->assertDatabaseMissing('recipes', [
+            'id' => $recipe->id,
         ]);
     }
 }
