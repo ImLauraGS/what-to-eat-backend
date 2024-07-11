@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RecipeController;
+use App\Http\Controllers\Api\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/recipe/{id}' , [RecipeController::class, 'getRecipe']);
     Route::put('/recipe/{id}' , [RecipeController::class, 'update']);
     Route::delete('/recipe/{id}' , [RecipeController::class, 'destroy']);
+    Route::get('/favorites/{user_id}', [FavoriteController::class, 'index']);
+    Route::post('/recipe/{id}', [FavoriteController::class, 'store']); 
+    Route::delete('/favorites/{user_id}/{recipe_id}', [FavoriteController::class, 'destroy']);
 });
