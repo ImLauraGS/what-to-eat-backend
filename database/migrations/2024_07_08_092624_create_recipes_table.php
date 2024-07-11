@@ -4,20 +4,26 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateRecipesTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('recipes', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->string('ingredients');
-            $table->timestamps();
-        });
+        // Verifica si la tabla recipes no existe antes de crearla
+        if (!Schema::hasTable('recipes')) {
+            Schema::create('recipes', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id');
+                $table->string('title');
+                $table->string('description');
+                $table->string('ingredients');
+                $table->timestamps();
+
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            });
+        }
     }
 
     /**
@@ -27,4 +33,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('recipes');
     }
-};
+}
