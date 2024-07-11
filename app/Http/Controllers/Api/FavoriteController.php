@@ -42,19 +42,20 @@ class FavoriteController extends Controller
 }
 
 
-// public function destroy($user_id, $recipe_id)
-// {
-//     $favorite = Favorite::where('user_id', $user_id)
-//                         ->where('recipe_id', $recipe_id)
-//                         ->first();
+public function destroy($user_id, $recipe_id)
+{
+    try {
+        $favorite = Favorite::where('user_id', $user_id)
+                            ->where('recipe_id', $recipe_id)
+                            ->firstOrFail();
 
-//     if (!$favorite) {
-//         return response()->json(['message' => 'Favorite not found'], 404);
-//     }
+        $favorite->delete();
 
-//     $favorite->delete();
+        return response()->json(['message' => 'Favorite deleted'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Favorite not found or error occurred', 'error' => $e->getMessage()], 404);
+    }
+}
 
-//     return response()->json(['message' => 'Favorite deleted'], 200);
-// }
 
 }
