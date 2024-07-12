@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Favorite extends Model
 {
+    use HasFactory;
     protected $primaryKey = ['user_id', 'recipe_id'];
     public $incrementing = false;
     public $timestamps = true;

@@ -55,6 +55,24 @@ class RecipeTest extends TestCase
             'user_id' => $user->id,
         ]);
     }
+
+    public function test_getRecipe(){
+        $user = User::factory()->create();
+        $recipe = Recipe::factory()->create(['user_id' => $user->id]);
+
+        Sanctum::actingAs($user, ['*']);
+
+        $response = $this->getJson("/api/recipe/{$recipe->id}");
+
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'id' => $recipe->id,
+                     'title' => $recipe->title,
+                     'description' => $recipe->description,
+                     'ingredients' => $recipe->ingredients,
+                     'user_id' => $user->id,
+                 ]);
+    }
     
     public function test_update(){
         $user = User::factory()->create();
