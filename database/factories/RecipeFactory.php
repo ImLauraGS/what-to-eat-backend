@@ -26,6 +26,8 @@ class RecipeFactory extends Factory
             'title' => $this->faker->text(100), 
             'description' => $this->faker->text(100), 
             'ingredients' => $this->faker->text(100), 
+            'tiktok'=>$this->faker->text(25), 
+            'youtube'=>$this->faker->text(25), 
             'user_id' => User::factory(),
         ];
     }

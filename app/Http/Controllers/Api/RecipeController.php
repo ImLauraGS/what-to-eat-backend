@@ -49,6 +49,8 @@ class RecipeController extends Controller
         'title' => 'required|string|max:255',
         'description' => 'required|string|max:1500',
         'ingredients' => 'required|string|max:1500',
+        'tiktok'=> 'string|max:1500',
+        'youtube'=> 'string|max:1500',
     ]);
 
     try {
@@ -62,6 +64,9 @@ class RecipeController extends Controller
         $recipes->title = $request->title;
         $recipes->description = $request->description;
         $recipes->ingredients = $request->ingredients;
+        $recipes->tiktok = $request->tiktok;
+        $recipes->youtube = $request->youtube;
+
 
         $user->recipes()->save($recipes);
 
@@ -97,6 +102,8 @@ class RecipeController extends Controller
             'title' => 'sometimes|required|string|max:255',
             'description' => 'sometimes|required|string|max:1500',
             'ingredients' => 'sometimes|required|string|max:1500',
+            'tiktok' => 'string|max:1500',
+            'youtube' => 'string|max:1500',
         ]);
 
         try {
@@ -112,7 +119,7 @@ class RecipeController extends Controller
                 return response()->json(['message' => 'No autorizado para actualizar esta receta'], 403);
             }
 
-            $recipe->update($request->only(['title', 'description', 'ingredients']));
+            $recipe->update($request->only(['title', 'description', 'ingredients', 'tiktok', 'youtube']));
 
             return response()->json(['message' => 'La receta se ha actualizado correctamente', 'recipe' => $recipe], 200);
         } catch (\Exception $e) {

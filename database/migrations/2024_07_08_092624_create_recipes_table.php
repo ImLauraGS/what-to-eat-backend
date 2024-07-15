@@ -18,6 +18,8 @@ class CreateRecipesTable extends Migration
                 $table->string('title');
                 $table->string('description', 1500); 
                 $table->string('ingredients', 1500);
+                $table->string('tiktok', 1500); 
+                $table->string('youtube', 1500);
                 $table->timestamps();
 
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
