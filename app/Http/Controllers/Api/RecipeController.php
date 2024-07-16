@@ -80,9 +80,21 @@ class RecipeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function getUserRecipes()
     {
-        //
+        try {
+            $user = Auth::user();
+
+            if (!$user) {
+                return response()->json(['message' => 'No autorizado'], 401);
+            }
+
+            $recipes = Recipe::where('user_id', $user->id)->get();
+
+            return response()->json($recipes, 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al recuperar las recetas del usuario.', 'error' => $e->getMessage()], 500);
+        }
     }
 
     /**
