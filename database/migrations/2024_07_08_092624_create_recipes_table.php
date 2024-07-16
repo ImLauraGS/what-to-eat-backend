@@ -16,10 +16,10 @@ class CreateRecipesTable extends Migration
                 $table->id();
                 $table->unsignedBigInteger('user_id');
                 $table->string('title');
-                $table->string('description', 1500); 
-                $table->string('ingredients', 1500);
-                $table->string('tiktok', 1500); 
-                $table->string('youtube', 1500);
+                $table->text('description');
+                $table->text('ingredients');
+                $table->text('tiktok');
+                $table->text('youtube');
                 $table->timestamps();
 
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
