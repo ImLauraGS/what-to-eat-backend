@@ -1,66 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+SPANISH V.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🌸 Descripción
 
-## About Laravel
+Proyecto de recetas que consiste en a partir de selecionar ingredientes, se sugiere una serie de recetas. Los usuarios puede registrarse y realizar un CRUD entero para sus recetas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El proyecto de recetas está siendo desarrollado como parte del curso en IT Academy de Barcelona Activa. Utiliza tecnologías modernas tanto en el frontend como en el backend para ofrecer una plataforma interactiva donde los usuarios pueden buscar recetas, añadir nuevas recetas, y gestionar sus favoritos. El frontend está construido con React utilizando Vite como bundler, Axios para comunicarse con el backend, y está estilizado principalmente con Tailwind CSS, además de algunos componentes de Material UI. Por otro lado, el backend se desarrolló en Laravel, siguiendo el patrón MVC y proporcionando una API Restful para gestionar las operaciones de las recetas. Se realizaron pruebas exhaustivas utilizando PHPUnit para garantizar la calidad y fiabilidad de los endpoints. El proyecto también incluye un diseño inicial en Figma para las vistas móviles, con planes para expandirlo a una versión de escritorio en el futuro.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Este repositorio va unido al repositiorio de front: [Aqui](https://github.com/ImLauraGS/what-to-eat-frontend)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 💻 Tecnologias usadas
 
-## Learning Laravel
+<div>
+<img alt="Static Badge" src="https://img.shields.io/badge/Laravel-10.10-blue">
+<br>
+<img alt="Static Badge" src="https://img.shields.io/badge/PHP-8.1-blue">
+<br>
+</div>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ⚙️ Instalación
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Aquí tienes una breve descripción de cómo poder ver nuestro proyecto. Para ejecutarlo necesitas tener conocimientos previos sobre como funciona Mamp/Xamp y tener instalado composer.
 
-## Laravel Sponsors
+1. Clona el repositorio tanto de back como de front.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone https://github.com/ImLauraGS/what-to-eat-frontend.git
+git clone https://github.com/ImLauraGS/what-to-eat-backend.git
+``` 
+2. Instalar dependencias.
 
-### Premium Partners
+```bash
+composer i
+``` 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. Crear la base de datos en phpMyAdmin.
 
-## Contributing
+4. Configurar el archivo .env:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+DB_DATABASE=namedatabase
+DB_USERNAME=root
+DB_PASSWORD=
+``` 
+Ten en cuenta, que a veces en MAC y si usas MAMP, es posible que la contraseña del usuario root sea "root".
 
-## Code of Conduct
+5. Migra las tablas a la base de datos:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan migrate
+``` 
 
-## Security Vulnerabilities
+6. Levantar el servidor (recuerda tener XAMP/MAMP encendido):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan serve
+``` 
+IMPORTANTE: Este backend se utiliza con el frontend: [Aqui](https://github.com/ImLauraGS/what-to-eat-frontend.git)
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔗 Autora
+
+![Laura](https://avatars.githubusercontent.com/ImLauraGS?s=50) 
+Laura G. 
+[LinkedIn](https://www.linkedin.com/in/laura-gil-solano/)
+
+
+_______________________________________________________________________
+
+ENGLISH V.
+
+## 🌸 Description
+
+Tecipe project that, based on selected ingredients, suggests a series of recipes. Users can register and perform complete CRUD operations for their recipes.
+
+The recipe project is being developed as part of the IT Academy course at Barcelona Activa. It utilizes modern technologies in both frontend and backend to provide an interactive platform where users can search for recipes, add new recipes, and manage their favorites. The frontend is built with React using Vite as the bundler, Axios for backend communication, and styled primarily with Tailwind CSS, supplemented by some Material UI components. On the other hand, the backend is developed in Laravel, following the MVC pattern and providing a Restful API to manage recipe operations. Comprehensive testing was conducted using PHPUnit to ensure the quality and reliability of the endpoints. The project also includes an initial design in Figma for mobile views, with plans to expand to a desktop version in the future.
+
+This repository is linked to the frontend repository: [Here](https://github.com/ImLauraGS/what-to-eat-frontend)
+
+## 💻 Technologies Used
+
+<div>
+<img alt="Static Badge" src="https://img.shields.io/badge/Laravel-10.10-blue">
+<br>
+<img alt="Static Badge" src="https://img.shields.io/badge/PHP-8.1-blue">
+<br>
+</div>
+
+
+## ⚙️ Installation
+Here is a brief description of how to view our project. To run it, you need prior knowledge of how Mamp/Xamp works and have Composer installed.
+
+ 1. Clone both the backend and frontend repositories.
+
+ ```bash
+git clone https://github.com/ImLauraGS/what-to-eat-frontend.git
+git clone https://github.com/ImLauraGS/what-to-eat-backend.git
+``` 
+
+2. Install dependencies.
+
+```bash
+composer i
+``` 
+3. Create the database in phpMyAdmin.
+
+4. Configure the .env file:
+```bash
+DB_DATABASE=namedatabase
+DB_USERNAME=root
+DB_PASSWORD=
+``` 
+Keep in mind that sometimes on a MAC, if you are using MAMP, the password for the root user might be "root".
+
+5. Migrate the tables to the database:
+
+```bash
+php artisan migrate
+``` 
+
+3. Start the server (remember to have XAMP/MAMP running).
+
+```bash
+php artisan serve
+``` 
+
+ IMPORTANT: This backend is used with the frontend: [Here](https://github.com/ImLauraGS/what-to-eat-frontend.git)
+
+## 🔗 Author
+ ![Laura](https://avatars.githubusercontent.com/ImLauraGS?s=50) 
+ Laura G. 
+ [LinkedIn](https://www.linkedin.com/in/laura-gil-solano/)
