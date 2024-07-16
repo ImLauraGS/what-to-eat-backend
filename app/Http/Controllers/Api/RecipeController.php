@@ -49,8 +49,8 @@ class RecipeController extends Controller
         'title' => 'required|string|max:255',
         'description' => 'required|string|max:1500',
         'ingredients' => 'required|string|max:1500',
-        'tiktok'=> 'string|max:1500',
-        'youtube'=> 'string|max:1500',
+        'tiktok'=> 'required|string|max:1500',
+        'youtube'=> 'required|string|max:1500',
     ]);
 
     try {
@@ -109,35 +109,39 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'description' => 'sometimes|required|string|max:1500',
-            'ingredients' => 'sometimes|required|string|max:1500',
-            'tiktok' => 'string|max:1500',
-            'youtube' => 'string|max:1500',
-        ]);
+{
+    $request->validate([
+        'title' => 'sometimes|required|string|max:255',
+        'description' => 'sometimes|required|string|max:1500',
+        'ingredients' => 'sometimes|required|string|max:1500',
+        'tiktok' => 'sometimes|required|string|max:1500',
+        'youtube' => 'sometimes|required|string|max:1500',
+    ]);
 
-        try {
-            $user = Auth::user();
+    try {
 
-            if (!$user) {
-                return response()->json(['message' => 'No autorizado'], 401);
-            }
+        $user = Auth::user();
 
-            $recipe = Recipe::findOrFail($id);
-
-            if ($recipe->user_id !== $user->id) {
-                return response()->json(['message' => 'No autorizado para actualizar esta receta'], 403);
-            }
-
-            $recipe->update($request->only(['title', 'description', 'ingredients', 'tiktok', 'youtube']));
-
-            return response()->json(['message' => 'La receta se ha actualizado correctamente', 'recipe' => $recipe], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Error al actualizar la receta', 'error' => $e->getMessage()], 500);
+        if (!$user) {
+            return response()->json(['message' => 'No autorizado'], 401);
         }
+
+
+        $recipe = Recipe::findOrFail($id);
+
+        if ($recipe->user_id !== $user->id) {
+            return response()->json(['message' => 'No autorizado para actualizar esta receta'], 403);
+        }
+
+        $recipe->fill($request->only(['title', 'description', 'ingredients', 'tiktok', 'youtube']));
+        $recipe->save();
+
+        return response()->json(['message' => 'La receta se ha actualizado correctamente', 'recipe' => $recipe], 200);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Error al actualizar la receta', 'error' => $e->getMessage()], 500);
     }
+}
+
 
     /**
      * Remove the specified resource from storage.

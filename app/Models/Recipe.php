@@ -17,7 +17,10 @@ class Recipe extends Model
 protected $fillable = [
     'title',
     'description',
-    'ingredients'
+    'ingredients',
+    'tiktok',
+    'youtube'
+
 ];
 //campos que son rellenables
 
