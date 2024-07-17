@@ -72,7 +72,7 @@ ENGLISH V.
 
 ## 🌸 Description
 
-Tecipe project that, based on selected ingredients, suggests a series of recipes. Users can register and perform complete CRUD operations for their recipes.
+Recipe project that, based on selected ingredients, suggests a series of recipes. Users can register and perform complete CRUD operations for their recipes.
 
 The recipe project is being developed as part of the IT Academy course at Barcelona Activa. It utilizes modern technologies in both frontend and backend to provide an interactive platform where users can search for recipes, add new recipes, and manage their favorites. The frontend is built with React using Vite as the bundler, Axios for backend communication, and styled primarily with Tailwind CSS, supplemented by some Material UI components. On the other hand, the backend is developed in Laravel, following the MVC pattern and providing a Restful API to manage recipe operations. Comprehensive testing was conducted using PHPUnit to ensure the quality and reliability of the endpoints. The project also includes an initial design in Figma for mobile views, with plans to expand to a desktop version in the future.
 
