@@ -41,6 +41,8 @@ class RecipeTest extends TestCase
             'title' => 'Test Recipe',
             'description' => 'Test Description',
             'ingredients' => 'Test Ingredients',
+            'tiktok' => 'Test tiktok',
+            'youtube' => 'test youtube'
         ]);
 
         $response->assertStatus(201)
@@ -52,6 +54,8 @@ class RecipeTest extends TestCase
             'title' => 'Test Recipe',
             'description' => 'Test Description',
             'ingredients' => 'Test Ingredients',
+            'tiktok' => 'Test tiktok',
+            'youtube' => 'test youtube',
             'user_id' => $user->id,
         ]);
     }
